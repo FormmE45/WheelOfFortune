@@ -1,7 +1,7 @@
-import { Participant } from "./ParticipantClass"
-import { participants } from "./InitializeData"
-import { participantsForSpecialCase } from "./InitializeData"
-import { winnerArray } from "./reserve1"
+import { Participant } from "./ParticipantClass.js"
+import { participants } from "./InitializeData.js"
+import { participantsForSpecialCase } from "./InitializeData.js"
+import { winnerArray } from "./reserve1.js"
 
 
 

@@ -1,8 +1,7 @@
-import { prizes,prizeButtons,participants } from "./InitializeData"
-import { Participant } from "./ParticipantClass"
-import { Prize } from "./PrizeClass"
-import { totalPickWinner, pickWinnerforSpecialCase  } from "./PickWinnerService"
-import { prizeKK,prize1,prize2,prize3,prize4,prizeDB } from "./InitializeData"
+import { prizes,prizeButtons,participants,prizeKK,prize1,prize2,prize3,prize4,prizeDB } from "./InitializeData.js"
+import { Participant } from "./ParticipantClass.js"
+import { Prize } from "./PrizeClass.js"
+import { totalPickWinner, pickWinnerforSpecialCase  } from "./PickWinnerService.js"
 
 export let winnerArray:Participant[]=[]
 //Current prize

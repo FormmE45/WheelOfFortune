@@ -1,10 +1,4 @@
 export class Prize {
-    id;
-    name;
-    status;
-    done;
-    numOfPrizes;
-    button;
     constructor(id, name, status, done, numOfPrizes) {
         this.id = id;
         this.name = name;

@@ -1,5 +1,5 @@
-import { Participant } from "./ParticipantClass"
-import { Prize } from "./PrizeClass"
+import { Participant } from "./ParticipantClass.js"
+import { Prize } from "./PrizeClass.js"
 
 export const participants: Participant[]=[]
 export const participantsForSpecialCase: Participant[]=[]
@@ -69,10 +69,10 @@ const participant60=new Participant(60,"NGUYỄN VĂN TÁM",1,1,"LOW",true)
 const participant61=new Participant(61,"NGUYỄN HOÀNG LỆ KHA",1,1,"LOW",true)
 const participant62=new Participant(62,"NGUYỄN CHÍ KHANG",1,1,"LOW",true)
 const participant63=new Participant(63,"HOÀNG THỊ THÁI AN",1,1,"LOW",true)
-const participant64=new Participant(64,"NGUYỄN HẢI VÂN",1,0,"LOW",true)
-const participant65=new Participant(65,"TRƯƠNG THỊ HỒNG HÀ",1,0,"LOW",true)
-const participant66=new Participant(66,"PHẠM PHÙNG HẢI VY",1,0,"LOW",true)
-const participant67=new Participant(67,"PHAN NGÔ PHƯƠNG MAI",1,0,"LOW",true)
+const participant64=new Participant(64,"NGUYỄN HẢI VÂN",1,0,"LOWEST",true)
+const participant65=new Participant(65,"TRƯƠNG THỊ HỒNG HÀ",1,0,"LOWEST",true)
+const participant66=new Participant(66,"PHẠM PHÙNG HẢI VY",1,0,"LOWEST",true)
+const participant67=new Participant(67,"PHAN NGÔ PHƯƠNG MAI",1,0,"LOWEST",true)
 //Prizes
 export const prizeKK=new Prize('KK',"Khuyến Khích",'active',false,35)
 export const prize4=new Prize('4',"Giải 4",'active',false,30)

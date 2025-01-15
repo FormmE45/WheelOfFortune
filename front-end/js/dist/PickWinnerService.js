@@ -1,6 +1,6 @@
-import { participants } from "./InitializeData";
-import { participantsForSpecialCase } from "./InitializeData";
-import { winnerArray } from "./reserve1";
+import { participants } from "./InitializeData.js";
+import { participantsForSpecialCase } from "./InitializeData.js";
+import { winnerArray } from "./reserve1.js";
 function pickWinner1() {
     const index = Math.floor(Math.random() * (66 - 0) + 0);
     const winner = participants[index];

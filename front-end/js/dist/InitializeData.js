@@ -1,5 +1,5 @@
-import { Participant } from "./ParticipantClass";
-import { Prize } from "./PrizeClass";
+import { Participant } from "./ParticipantClass.js";
+import { Prize } from "./PrizeClass.js";
 export const participants = [];
 export const participantsForSpecialCase = [];
 export const prizes = [];

@@ -1,10 +1,4 @@
 export class Participant {
-    id;
-    name;
-    number;
-    seniority;
-    condition;
-    status;
     constructor(id, name, number, seniority, condition, status) {
         this.id = id;
         this.name = name;

@@ -1,6 +1,5 @@
-import { prizes, prizeButtons, participants } from "./InitializeData";
-import { totalPickWinner, pickWinnerforSpecialCase } from "./PickWinnerService";
-import { prizeKK, prize1, prize2, prize3, prize4, prizeDB } from "./InitializeData";
+import { prizes, prizeButtons, participants, prizeKK, prize1, prize2, prize3, prize4, prizeDB } from "./InitializeData.js";
+import { totalPickWinner, pickWinnerforSpecialCase } from "./PickWinnerService.js";
 export let winnerArray = [];
 let current_prize;
 let buttonPrizes = document.querySelector("#buttonPrizes");
