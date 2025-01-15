@@ -17,15 +17,15 @@ prizes.forEach((prize)=>{
     button.className="buttonPrize"
     button.id=prize.id
     button.innerText=prize.name
-
     button.addEventListener("click",()=>{
+        
         winnerArray=[]
+        console.log(winnerArray)
         count=3
         current_prize=prize.id
     })
     prize.button=button
     prizeButtons.push(button)
-
     if(buttonPrizes!=null){
     buttonPrizes.appendChild(button)
     }
@@ -46,48 +46,39 @@ let count=3
 //Start and stop button handler
 if(startButton&&stopButton){
 startButton.addEventListener("click",()=>{
+    console.log(current_prize)
     switch(current_prize){
         case "KK" : {
-            if(count==0){
-                prizeKK.done=true
-                const KKButton: HTMLButtonElement | null= document.querySelector("#KK")
-                if(KKButton!=null){
-                    KKButton.disabled=true
-                }
-                return
-            }
-            totalPickWinner(8,3,1)
+            console.log(participants)
             if(count==1){
-            totalPickWinner(8,3,0)
+            totalPickWinner(0,6,0,0,5)
+            }else{
+            totalPickWinner(1,6,0,0,5)
             }
             count=count-1
             console.log(count)
             break
         }
         case "4" : {
-            if(prize4.done){
-                const ForthButton: HTMLButtonElement | null= document.querySelector("#4")
-                if(ForthButton!=null){
-                    ForthButton.disabled=true
-                }
-                return
-            }
+            console.log(participants)
             if(count==0){
                 prize4.done=true
                 return
             }
-            totalPickWinner(5,4,1)
             if(count==1){
-            totalPickWinner(6,3,1)
+            totalPickWinner(0,3,2,0,5)
+            }else{
+            totalPickWinner(1,3,2,0,4)
             }
             count=count-1
+            console.log(count)
             break
         }
         case "3" : {
             if(prize3.done){
                 return
             }
-            totalPickWinner(0,10,0)
+            totalPickWinner(0,0,1,2,7)
             prize3.done=true
             break
         }
@@ -95,7 +86,7 @@ startButton.addEventListener("click",()=>{
             if(prize2.done){
                 return
             }
-            totalPickWinner(0,1,4)
+            totalPickWinner(0,0,0,0,5)
             prize2.done=true
             break
         }
@@ -103,15 +94,15 @@ startButton.addEventListener("click",()=>{
             if(prize1.done){
                 return
             }
-            totalPickWinner(0,1,1)
+            totalPickWinner(0,0,0,0,2)
             prize1.done=true
             break
         }
-        case "DB" : {
+        case "ĐB" : {
             if(prizeDB.done){
                 return
             }
-            pickWinnerforSpecialCase()
+            totalPickWinner(0,0,0,0,1)
             prizeDB.done=true
             break
         }
@@ -123,17 +114,19 @@ startButton.addEventListener("click",()=>{
 
 
 }
+//check Winner Array And Disable Button
 function checkWinnerArrayAndDisableButton(prize: Prize){
+    console.log(winnerArray.length)
     checkWinnerArray(prize)
     prize.disableButton()
 }
+//check Winner Array
 function checkWinnerArray(prize:Prize){
     console.log(prize.name)
     winnerArray.forEach(item=>console.log(item.id + " " + item.name))
 }
 if(startButton&&stopButton){
 stopButton.addEventListener("click",()=>{
-
     switch(current_prize){
         case "KK":{
             if(count==0){
@@ -143,7 +136,7 @@ stopButton.addEventListener("click",()=>{
         }
         case "4":{
             if(count==0){
-                checkWinnerArrayAndDisableButton(prizeKK)
+                checkWinnerArrayAndDisableButton(prize4)
             }
             break
         }
@@ -162,7 +155,7 @@ stopButton.addEventListener("click",()=>{
                 prize1.disableButton()
             break
         }
-        case "DB":{
+        case "ĐB":{
             checkWinnerArray(prizeDB)
                 prizeDB.disableButton()
             break

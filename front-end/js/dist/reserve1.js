@@ -1,5 +1,5 @@
 import { prizes, prizeButtons, participants, prizeKK, prize1, prize2, prize3, prize4, prizeDB } from "./InitializeData.js";
-import { totalPickWinner, pickWinnerforSpecialCase } from "./PickWinnerService.js";
+import { totalPickWinner } from "./PickWinnerService.js";
 export let winnerArray = [];
 let current_prize;
 let buttonPrizes = document.querySelector("#buttonPrizes");
@@ -12,6 +12,7 @@ prizes.forEach((prize) => {
     button.innerText = prize.name;
     button.addEventListener("click", () => {
         winnerArray = [];
+        console.log(winnerArray);
         count = 3;
         current_prize = prize.id;
     });
@@ -32,48 +33,41 @@ function checkNumber() {
 let count = 3;
 if (startButton && stopButton) {
     startButton.addEventListener("click", () => {
+        console.log(current_prize);
         switch (current_prize) {
             case "KK": {
-                if (count == 0) {
-                    prizeKK.done = true;
-                    const KKButton = document.querySelector("#KK");
-                    if (KKButton != null) {
-                        KKButton.disabled = true;
-                    }
-                    return;
-                }
-                totalPickWinner(8, 3, 1);
+                console.log(participants);
                 if (count == 1) {
-                    totalPickWinner(8, 3, 0);
+                    totalPickWinner(0, 6, 0, 0, 5);
+                }
+                else {
+                    totalPickWinner(1, 6, 0, 0, 5);
                 }
                 count = count - 1;
                 console.log(count);
                 break;
             }
             case "4": {
-                if (prize4.done) {
-                    const ForthButton = document.querySelector("#4");
-                    if (ForthButton != null) {
-                        ForthButton.disabled = true;
-                    }
-                    return;
-                }
+                console.log(participants);
                 if (count == 0) {
                     prize4.done = true;
                     return;
                 }
-                totalPickWinner(5, 4, 1);
                 if (count == 1) {
-                    totalPickWinner(6, 3, 1);
+                    totalPickWinner(0, 3, 2, 0, 5);
+                }
+                else {
+                    totalPickWinner(1, 3, 2, 0, 4);
                 }
                 count = count - 1;
+                console.log(count);
                 break;
             }
             case "3": {
                 if (prize3.done) {
                     return;
                 }
-                totalPickWinner(0, 10, 0);
+                totalPickWinner(0, 0, 1, 2, 7);
                 prize3.done = true;
                 break;
             }
@@ -81,7 +75,7 @@ if (startButton && stopButton) {
                 if (prize2.done) {
                     return;
                 }
-                totalPickWinner(0, 1, 4);
+                totalPickWinner(0, 0, 0, 0, 5);
                 prize2.done = true;
                 break;
             }
@@ -89,15 +83,15 @@ if (startButton && stopButton) {
                 if (prize1.done) {
                     return;
                 }
-                totalPickWinner(0, 1, 1);
+                totalPickWinner(0, 0, 0, 0, 2);
                 prize1.done = true;
                 break;
             }
-            case "DB": {
+            case "ĐB": {
                 if (prizeDB.done) {
                     return;
                 }
-                pickWinnerforSpecialCase();
+                totalPickWinner(0, 0, 0, 0, 1);
                 prizeDB.done = true;
                 break;
             }
@@ -107,6 +101,7 @@ if (startButton && stopButton) {
     });
 }
 function checkWinnerArrayAndDisableButton(prize) {
+    console.log(winnerArray.length);
     checkWinnerArray(prize);
     prize.disableButton();
 }
@@ -125,7 +120,7 @@ if (startButton && stopButton) {
             }
             case "4": {
                 if (count == 0) {
-                    checkWinnerArrayAndDisableButton(prizeKK);
+                    checkWinnerArrayAndDisableButton(prize4);
                 }
                 break;
             }
@@ -144,7 +139,7 @@ if (startButton && stopButton) {
                 prize1.disableButton();
                 break;
             }
-            case "DB": {
+            case "ĐB": {
                 checkWinnerArray(prizeDB);
                 prizeDB.disableButton();
                 break;
