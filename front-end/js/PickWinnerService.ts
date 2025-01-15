@@ -1,5 +1,9 @@
+import { Participant } from "./ParticipantClass"
+import { participants } from "./InitializeData"
+import { participantsForSpecialCase } from "./InitializeData"
+import { winnerArray } from "./reserve1"
 
-let winnerArray:Participant[]=[]
+
 
 function pickWinner1(){
     //random
@@ -33,7 +37,7 @@ function pickWinner3(){
     return pickWinner3()
 }
 
-function totalPickWinner(low:number,mid:number,high:number){
+export function totalPickWinner(low:number,mid:number,high:number){
     if(low!=0){
     for(let i=0;i<low;i++){
         winnerArray.push(pickWinner1())
@@ -51,7 +55,7 @@ function totalPickWinner(low:number,mid:number,high:number){
     }
 }
 
-function pickWinnerforSpecialCase(){  
+export function pickWinnerforSpecialCase(){  
     const index:number=Math.floor(Math.random()*(26-0)+0)
     console.log(index)
     winnerArray.push(participantsForSpecialCase[index])

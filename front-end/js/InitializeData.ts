@@ -1,7 +1,10 @@
+import { Participant } from "./ParticipantClass"
+import { Prize } from "./PrizeClass"
 
-const participants: Participant[]=[]
-const participantsForSpecialCase: Participant[]=[]
-const prizes: Prize[]=[]
+export const participants: Participant[]=[]
+export const participantsForSpecialCase: Participant[]=[]
+export const prizes: Prize[]=[]
+export const prizeButtons: HTMLButtonElement[]=[]
 //Participants
 const participant1=new Participant(1,"NGUYỄN THỊ THÙY NGA",3,14,"HIGH",true)
 const participant2=new Participant(2,"LÊ VĂN HẬN",3,14,"HIGH",true)
@@ -71,12 +74,12 @@ const participant65=new Participant(65,"TRƯƠNG THỊ HỒNG HÀ",1,0,"LOW",tru
 const participant66=new Participant(66,"PHẠM PHÙNG HẢI VY",1,0,"LOW",true)
 const participant67=new Participant(67,"PHAN NGÔ PHƯƠNG MAI",1,0,"LOW",true)
 //Prizes
-const prizeKK=new Prize('KK',"Khuyến Khích",'active',false,35)
-const prize4=new Prize('4',"Giải 4",'active',false,30)
-const prize3=new Prize('3',"Giải 3",'active',false,10)
-const prize2=new Prize('2',"Giải 2",'active',false,5)
-const prize1=new Prize('1',"Giải 1",'active',false,2)
-const prizeDB=new Prize('ĐB',"Giải Đặc Biệt",'active',false,1)   
+export const prizeKK=new Prize('KK',"Khuyến Khích",'active',false,35)
+export const prize4=new Prize('4',"Giải 4",'active',false,30)
+export const prize3=new Prize('3',"Giải 3",'active',false,10)
+export const prize2=new Prize('2',"Giải 2",'active',false,5)
+export const prize1=new Prize('1',"Giải 1",'active',false,2)
+export const prizeDB=new Prize('ĐB',"Giải Đặc Biệt",'active',false,1)   
 
 participants.push(participant1,participant2,participant3,participant4,participant5,participant6,participant7,participant8,participant9,participant10,participant11,participant12,participant13,participant14,participant15,
     participant16,participant17,participant18,participant19,participant20,participant21,participant22,participant23,participant24,participant25,participant26,participant27,participant28,participant29,participant30,
@@ -89,7 +92,7 @@ participantsForSpecialCase.push(participant1,participant2,participant3,participa
     participant16,participant17,participant18,participant19,participant20,participant21,participant22,participant23,participant24,participant25,participant26,participant27)
 
 
-const prizeButtons: HTMLButtonElement[]=[]
+
 
 prizes.push(prizeKK,prize4,prize3,prize2,prize1,prizeDB)
 

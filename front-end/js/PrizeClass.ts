@@ -1,4 +1,4 @@
-class Prize{
+export class Prize{
     id:string
     name:string
     status:string

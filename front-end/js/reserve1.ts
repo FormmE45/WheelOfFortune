@@ -1,4 +1,10 @@
+import { prizes,prizeButtons,participants } from "./InitializeData"
+import { Participant } from "./ParticipantClass"
+import { Prize } from "./PrizeClass"
+import { totalPickWinner, pickWinnerforSpecialCase  } from "./PickWinnerService"
+import { prizeKK,prize1,prize2,prize3,prize4,prizeDB } from "./InitializeData"
 
+export let winnerArray:Participant[]=[]
 //Current prize
 let current_prize:string
 //Get div for side panel buttonPrizes
@@ -114,6 +120,17 @@ startButton.addEventListener("click",()=>{
     startButton.disabled=true
     stopButton.disabled=false
 })
+
+
+
+}
+function checkWinnerArrayAndDisableButton(prize: Prize){
+    checkWinnerArray(prize)
+    prize.disableButton()
+}
+function checkWinnerArray(prize:Prize){
+    console.log(prize.name)
+    winnerArray.forEach(item=>console.log(item.id + " " + item.name))
 }
 if(startButton&&stopButton){
 stopButton.addEventListener("click",()=>{
@@ -121,29 +138,33 @@ stopButton.addEventListener("click",()=>{
     switch(current_prize){
         case "KK":{
             if(count==0){
-                prizeKK.disableButton()
+                checkWinnerArrayAndDisableButton(prizeKK)
             }
             break
         }
         case "4":{
             if(count==0){
-                prize4.disableButton()
+                checkWinnerArrayAndDisableButton(prizeKK)
             }
             break
         }
         case "3":{
+                checkWinnerArray(prize3)
                 prize3.disableButton()
             break
         }
         case "2":{
+            checkWinnerArray(prize2)
                 prize2.disableButton()
             break
         }
         case "1":{
+            checkWinnerArray(prize1)
                 prize1.disableButton()
             break
         }
         case "DB":{
+            checkWinnerArray(prizeDB)
                 prizeDB.disableButton()
             break
         }

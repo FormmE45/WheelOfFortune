@@ -1,4 +1,4 @@
-class Participant{
+export class Participant{
     id:number
     name:string
     number:number
