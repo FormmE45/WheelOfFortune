@@ -1,4 +1,5 @@
 import { Participant } from "./ParticipantClass.js";
+import { winnerArray } from "./reserve1.js";
 
 export const participantContainer=document.querySelector(".participant-container")
 
@@ -27,5 +28,9 @@ export function initParticipantOnArrayInput(participantsInput:Participant[]){
     participantsInput.forEach((participant)=>{
         initParticipantFE(participant)
     })
+}
+
+export function initWinnerToModal(){
+    winnerArray
 }
 

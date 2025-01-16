@@ -72,3 +72,7 @@ body{
   background-color: gray;
   color: black;
 }
+
+.modalPrize{
+  height: 100vh;
+}

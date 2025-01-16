@@ -1,7 +1,7 @@
 import { Participant } from "./ParticipantClass.js"
 import { participants } from "./InitializeData.js"
 import { participantsForSpecialCase } from "./InitializeData.js"
-import { winnerArray } from "./reserve1.js"
+import { winnerArray, winnerPerCycle } from "./reserve1.js"
 
 function pickWinner(condition:string){
     const index:number=Math.floor(Math.random()*(67-0)+0)
@@ -16,27 +16,37 @@ function pickWinner(condition:string){
 export function totalPickWinner(lowest:number,low:number,mid:number,high:number,highest:number){
     if(lowest!=0){
         for(let i=0;i<lowest;i++){
-            winnerArray.push(pickWinner("LOWEST"))
+            let winner:Participant=pickWinner("LOWEST")
+            winnerArray.push(winner)
+            winnerPerCycle.push(winner)
         }
     }
     if(low!=0){
     for(let i=0;i<low;i++){
-        winnerArray.push(pickWinner("LOW"))
+        let winner:Participant=pickWinner("LOW")
+            winnerArray.push(winner)
+            winnerPerCycle.push(winner)
     }
     }
     if(mid!=0){
     for(let i=0;i<mid;i++){
-        winnerArray.push(pickWinner("MID"))
+        let winner:Participant=pickWinner("MID")
+            winnerArray.push(winner)
+            winnerPerCycle.push(winner)
     }
     }
     if(high!=0){
     for(let i=0;i<high;i++){
-        winnerArray.push(pickWinner("HIGH"))
+        let winner:Participant=pickWinner("HIGH")
+            winnerArray.push(winner)
+            winnerPerCycle.push(winner)
     }
     }
     if(highest!=0){
     for(let i=0;i<highest;i++){
-         winnerArray.push(pickWinner("HIGHEST"))
+        let winner:Participant=pickWinner("HIGHEST")
+        winnerArray.push(winner)
+        winnerPerCycle.push(winner)
     }
     }
 }

@@ -11,6 +11,8 @@ prizes.forEach((prize) => {
     button.className = "buttonPrize btn btn-primary col-2";
     button.id = prize.id;
     button.innerText = prize.name;
+    button.setAttribute('data-bs-toggle', 'modal');
+    button.setAttribute('data-bs-target', '#prize' + prize.id);
     button.addEventListener("click", () => {
         winnerArray = [];
         console.log(winnerArray);
@@ -24,36 +26,32 @@ prizes.forEach((prize) => {
     }
 });
 initParticipantOnArrayInput(participants);
+export let winnerPerCycle = [];
 let count = 3;
 if (startButton && stopButton) {
     startButton.addEventListener("click", () => {
         console.log(current_prize);
         switch (current_prize) {
             case "KK": {
-                if (count > 0) {
-                    count = count - 1;
-                }
-                else {
-                    return;
-                }
-                console.log(participants);
+                winnerPerCycle = [];
+                console.log(winnerPerCycle);
                 if (count == 1) {
                     totalPickWinner(0, 6, 0, 0, 5);
                 }
                 else {
                     totalPickWinner(1, 6, 0, 0, 5);
                 }
-                initParticipantOnArrayInput(participants);
-                console.log(count);
-                break;
-            }
-            case "4": {
                 if (count > 0) {
                     count = count - 1;
                 }
                 else {
                     return;
                 }
+                initParticipantOnArrayInput(participants);
+                break;
+            }
+            case "4": {
+                winnerPerCycle = [];
                 console.log(participants);
                 if (count == 1) {
                     totalPickWinner(0, 3, 2, 0, 5);
@@ -61,11 +59,18 @@ if (startButton && stopButton) {
                 else {
                     totalPickWinner(1, 3, 2, 0, 4);
                 }
+                if (count > 0) {
+                    count = count - 1;
+                }
+                else {
+                    return;
+                }
                 initParticipantOnArrayInput(participants);
                 console.log(count);
                 break;
             }
             case "3": {
+                winnerPerCycle = [];
                 if (prize3.done) {
                     return;
                 }
@@ -75,6 +80,7 @@ if (startButton && stopButton) {
                 break;
             }
             case "2": {
+                winnerPerCycle = [];
                 if (prize2.done) {
                     return;
                 }
@@ -84,6 +90,7 @@ if (startButton && stopButton) {
                 break;
             }
             case "1": {
+                winnerPerCycle = [];
                 if (prize1.done) {
                     return;
                 }
@@ -93,6 +100,7 @@ if (startButton && stopButton) {
                 break;
             }
             case "ĐB": {
+                winnerPerCycle = [];
                 if (prizeDB.done) {
                     return;
                 }
@@ -115,12 +123,21 @@ function checkWinnerArray(prize) {
     console.log(prize.name);
     winnerArray.forEach(item => console.log(item.id + " " + item.name));
 }
-function showModalWinner() {
+function initModalWinner() {
+    const winnermodal = document.querySelector("#winnermodalbody");
+    if (winnermodal)
+        winnermodal.innerHTML = "";
+    winnerPerCycle.forEach(winner => {
+        const winnerDiv = document.createElement("div");
+        winnerDiv.textContent = winner.name;
+        winnermodal === null || winnermodal === void 0 ? void 0 : winnermodal.appendChild(winnerDiv);
+    });
 }
 if (startButton && stopButton) {
     stopButton.addEventListener("click", () => {
         switch (current_prize) {
             case "KK": {
+                initModalWinner();
                 if (count == 0) {
                     checkWinnerArrayAndDisableButton(prizeKK);
                 }
