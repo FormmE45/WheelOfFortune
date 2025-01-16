@@ -1,15 +1,4 @@
-#slotMachine {
-    width: 300px;
-    height: 50px;
-    border: 2px solid #333;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 50px;
-  }
-  #participants {
-    display: block;
-  }
+
 .side-panel{
   
 }
@@ -24,9 +13,34 @@
 }
 
 
+body{
+  background-image: url(https://i.pinimg.com/236x/6d/69/2f/6d692f373f40e5d7b75b107faa6972e5.jpg);
+}
 
-
-  @keyframes scrolling {
+@keyframes scrolling {
     0% { transform: translateY(0); }
     100% { transform: translateY(100%); }
-  }
+}
+
+.participant-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.participantDiv{
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  text-align: center;
+  height: 20%;
+  margin: 0.5%;
+}
+
+.participantActive{
+  background-color: aqua;
+  color: red;
+}
+.participantInactive{
+  background-color: gray;
+  color: black;
+}

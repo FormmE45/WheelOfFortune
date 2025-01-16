@@ -1,7 +1,8 @@
 import { prizes,prizeButtons,participants,prizeKK,prize1,prize2,prize3,prize4,prizeDB } from "./InitializeData.js"
 import { Participant } from "./ParticipantClass.js"
 import { Prize } from "./PrizeClass.js"
-import { totalPickWinner, pickWinnerforSpecialCase  } from "./PickWinnerService.js"
+import { totalPickWinner } from "./PickWinnerService.js"
+import { initParticipantOnArrayInput } from "./InitToFE.js"
 
 export let winnerArray:Participant[]=[]
 //Current prize
@@ -14,7 +15,7 @@ const stopButton: HTMLButtonElement | null=document.querySelector("#stop")
 // Initialize button
 prizes.forEach((prize)=>{
     const button=document.createElement("button")
-    button.className="buttonPrize"
+    button.className="buttonPrize btn btn-primary"
     button.id=prize.id
     button.innerText=prize.name
     button.addEventListener("click",()=>{
@@ -30,16 +31,17 @@ prizes.forEach((prize)=>{
     buttonPrizes.appendChild(button)
     }
 })
-
+//Init participant
+initParticipantOnArrayInput(participants)
     
-function checkNumber(){
-        participants.forEach((item)=>{
-            if(item.number==0){
-                item.status=false;
-                console.log(item.id+" "+item.name)
-            }
-        })
-}
+// function checkNumber(){
+//         participants.forEach((item)=>{
+//             if(item.number==0){
+//                 item.status=false;
+//                 console.log(item.id+" "+item.name)
+//             }
+//         })
+// }
     
 //Count for the number of roll (only KK and 4 prize)
 let count=3
@@ -56,6 +58,7 @@ startButton.addEventListener("click",()=>{
             totalPickWinner(1,6,0,0,5)
             }
             count=count-1
+            initParticipantOnArrayInput(participants)
             console.log(count)
             break
         }
@@ -71,6 +74,7 @@ startButton.addEventListener("click",()=>{
             totalPickWinner(1,3,2,0,4)
             }
             count=count-1
+            initParticipantOnArrayInput(participants)
             console.log(count)
             break
         }
@@ -80,6 +84,7 @@ startButton.addEventListener("click",()=>{
             }
             totalPickWinner(0,0,1,2,7)
             prize3.done=true
+            initParticipantOnArrayInput(participants)
             break
         }
         case "2" : {
@@ -88,6 +93,7 @@ startButton.addEventListener("click",()=>{
             }
             totalPickWinner(0,0,0,0,5)
             prize2.done=true
+            initParticipantOnArrayInput(participants)
             break
         }
         case "1" : {
@@ -96,6 +102,7 @@ startButton.addEventListener("click",()=>{
             }
             totalPickWinner(0,0,0,0,2)
             prize1.done=true
+            initParticipantOnArrayInput(participants)
             break
         }
         case "ĐB" : {

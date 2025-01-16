@@ -1,5 +1,6 @@
 import { prizes, prizeButtons, participants, prizeKK, prize1, prize2, prize3, prize4, prizeDB } from "./InitializeData.js";
 import { totalPickWinner } from "./PickWinnerService.js";
+import { initParticipantOnArrayInput } from "./InitToFE.js";
 export let winnerArray = [];
 let current_prize;
 let buttonPrizes = document.querySelector("#buttonPrizes");
@@ -7,7 +8,7 @@ const startButton = document.querySelector("#start");
 const stopButton = document.querySelector("#stop");
 prizes.forEach((prize) => {
     const button = document.createElement("button");
-    button.className = "buttonPrize";
+    button.className = "buttonPrize btn btn-primary";
     button.id = prize.id;
     button.innerText = prize.name;
     button.addEventListener("click", () => {
@@ -22,14 +23,7 @@ prizes.forEach((prize) => {
         buttonPrizes.appendChild(button);
     }
 });
-function checkNumber() {
-    participants.forEach((item) => {
-        if (item.number == 0) {
-            item.status = false;
-            console.log(item.id + " " + item.name);
-        }
-    });
-}
+initParticipantOnArrayInput(participants);
 let count = 3;
 if (startButton && stopButton) {
     startButton.addEventListener("click", () => {
@@ -44,6 +38,7 @@ if (startButton && stopButton) {
                     totalPickWinner(1, 6, 0, 0, 5);
                 }
                 count = count - 1;
+                initParticipantOnArrayInput(participants);
                 console.log(count);
                 break;
             }
@@ -60,6 +55,7 @@ if (startButton && stopButton) {
                     totalPickWinner(1, 3, 2, 0, 4);
                 }
                 count = count - 1;
+                initParticipantOnArrayInput(participants);
                 console.log(count);
                 break;
             }
@@ -69,6 +65,7 @@ if (startButton && stopButton) {
                 }
                 totalPickWinner(0, 0, 1, 2, 7);
                 prize3.done = true;
+                initParticipantOnArrayInput(participants);
                 break;
             }
             case "2": {
@@ -77,6 +74,7 @@ if (startButton && stopButton) {
                 }
                 totalPickWinner(0, 0, 0, 0, 5);
                 prize2.done = true;
+                initParticipantOnArrayInput(participants);
                 break;
             }
             case "1": {
@@ -85,6 +83,7 @@ if (startButton && stopButton) {
                 }
                 totalPickWinner(0, 0, 0, 0, 2);
                 prize1.done = true;
+                initParticipantOnArrayInput(participants);
                 break;
             }
             case "ĐB": {
