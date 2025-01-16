@@ -18,6 +18,9 @@ export function initParticipantFE(participant) {
     participantContainer === null || participantContainer === void 0 ? void 0 : participantContainer.appendChild(participantDiv);
 }
 export function initParticipantOnArrayInput(participantsInput) {
+    if (participantContainer) {
+        participantContainer.innerHTML = "";
+    }
     participantsInput.forEach((participant) => {
         initParticipantFE(participant);
     });

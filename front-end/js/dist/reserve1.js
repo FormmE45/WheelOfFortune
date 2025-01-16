@@ -1,4 +1,4 @@
-import { prizes, prizeButtons, participants, prizeKK, prize1, prize2, prize3, prize4, prizeDB } from "./InitializeData.js";
+import { prizes, prizeButtons, participants, prizeKK, prize1, prize2, prize3, prize4, prizeDB, participantsForSpecialCase } from "./InitializeData.js";
 import { totalPickWinner } from "./PickWinnerService.js";
 import { initParticipantOnArrayInput } from "./InitToFE.js";
 export let winnerArray = [];
@@ -8,7 +8,7 @@ const startButton = document.querySelector("#start");
 const stopButton = document.querySelector("#stop");
 prizes.forEach((prize) => {
     const button = document.createElement("button");
-    button.className = "buttonPrize btn btn-primary";
+    button.className = "buttonPrize btn btn-primary col-2";
     button.id = prize.id;
     button.innerText = prize.name;
     button.addEventListener("click", () => {
@@ -30,6 +30,12 @@ if (startButton && stopButton) {
         console.log(current_prize);
         switch (current_prize) {
             case "KK": {
+                if (count > 0) {
+                    count = count - 1;
+                }
+                else {
+                    return;
+                }
                 console.log(participants);
                 if (count == 1) {
                     totalPickWinner(0, 6, 0, 0, 5);
@@ -37,24 +43,24 @@ if (startButton && stopButton) {
                 else {
                     totalPickWinner(1, 6, 0, 0, 5);
                 }
-                count = count - 1;
                 initParticipantOnArrayInput(participants);
                 console.log(count);
                 break;
             }
             case "4": {
-                console.log(participants);
-                if (count == 0) {
-                    prize4.done = true;
+                if (count > 0) {
+                    count = count - 1;
+                }
+                else {
                     return;
                 }
+                console.log(participants);
                 if (count == 1) {
                     totalPickWinner(0, 3, 2, 0, 5);
                 }
                 else {
                     totalPickWinner(1, 3, 2, 0, 4);
                 }
-                count = count - 1;
                 initParticipantOnArrayInput(participants);
                 console.log(count);
                 break;
@@ -92,6 +98,7 @@ if (startButton && stopButton) {
                 }
                 totalPickWinner(0, 0, 0, 0, 1);
                 prizeDB.done = true;
+                initParticipantOnArrayInput(participantsForSpecialCase);
                 break;
             }
         }
@@ -107,6 +114,8 @@ function checkWinnerArrayAndDisableButton(prize) {
 function checkWinnerArray(prize) {
     console.log(prize.name);
     winnerArray.forEach(item => console.log(item.id + " " + item.name));
+}
+function showModalWinner() {
 }
 if (startButton && stopButton) {
     stopButton.addEventListener("click", () => {

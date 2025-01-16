@@ -1,4 +1,4 @@
-import { prizes,prizeButtons,participants,prizeKK,prize1,prize2,prize3,prize4,prizeDB } from "./InitializeData.js"
+import { prizes,prizeButtons,participants,prizeKK,prize1,prize2,prize3,prize4,prizeDB, participantsForSpecialCase } from "./InitializeData.js"
 import { Participant } from "./ParticipantClass.js"
 import { Prize } from "./PrizeClass.js"
 import { totalPickWinner } from "./PickWinnerService.js"
@@ -15,11 +15,10 @@ const stopButton: HTMLButtonElement | null=document.querySelector("#stop")
 // Initialize button
 prizes.forEach((prize)=>{
     const button=document.createElement("button")
-    button.className="buttonPrize btn btn-primary"
+    button.className="buttonPrize btn btn-primary col-2"
     button.id=prize.id
     button.innerText=prize.name
     button.addEventListener("click",()=>{
-        
         winnerArray=[]
         console.log(winnerArray)
         count=3
@@ -51,29 +50,33 @@ startButton.addEventListener("click",()=>{
     console.log(current_prize)
     switch(current_prize){
         case "KK" : {
+            if(count>0){
+                count=count-1
+            }else{
+                return
+            }
             console.log(participants)
             if(count==1){
             totalPickWinner(0,6,0,0,5)
             }else{
             totalPickWinner(1,6,0,0,5)
             }
-            count=count-1
             initParticipantOnArrayInput(participants)
             console.log(count)
             break
         }
         case "4" : {
-            console.log(participants)
-            if(count==0){
-                prize4.done=true
+            if(count>0){
+                count=count-1
+            }else{
                 return
             }
+            console.log(participants)
             if(count==1){
             totalPickWinner(0,3,2,0,5)
             }else{
             totalPickWinner(1,3,2,0,4)
             }
-            count=count-1
             initParticipantOnArrayInput(participants)
             console.log(count)
             break
@@ -111,6 +114,7 @@ startButton.addEventListener("click",()=>{
             }
             totalPickWinner(0,0,0,0,1)
             prizeDB.done=true
+            initParticipantOnArrayInput(participantsForSpecialCase)
             break
         }
     }
@@ -132,6 +136,11 @@ function checkWinnerArray(prize:Prize){
     console.log(prize.name)
     winnerArray.forEach(item=>console.log(item.id + " " + item.name))
 }
+
+function showModalWinner(){
+
+}
+
 if(startButton&&stopButton){
 stopButton.addEventListener("click",()=>{
     switch(current_prize){

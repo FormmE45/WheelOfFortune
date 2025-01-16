@@ -1,4 +1,3 @@
-import { participants } from "./InitializeData.js";
 import { Participant } from "./ParticipantClass.js";
 
 export const participantContainer=document.querySelector(".participant-container")
@@ -22,6 +21,9 @@ export function initParticipantFE(participant:Participant){
 }
 
 export function initParticipantOnArrayInput(participantsInput:Participant[]){
+    if(participantContainer){
+    participantContainer.innerHTML=""
+    }
     participantsInput.forEach((participant)=>{
         initParticipantFE(participant)
     })

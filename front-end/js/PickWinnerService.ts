@@ -3,50 +3,6 @@ import { participants } from "./InitializeData.js"
 import { participantsForSpecialCase } from "./InitializeData.js"
 import { winnerArray } from "./reserve1.js"
 
-let participantArrayPerPrize: Participant[]=[]
-
-function initParticipantPool(maxIndexOfParticipant:number){
-    participantArrayPerPrize=participants.slice(0,maxIndexOfParticipant);
-    console.log(participantArrayPerPrize.length)
-    participantArrayPerPrize.forEach(participant=>{
-        console.log(participant.id);
-    })}
-
-
-
-// function pickWinner1(){
-//     //random
-//     const index:number=Math.floor(Math.random()*(participantArrayPerPrize.length-1-0)+0)
-//     const winner:Participant=participantArrayPerPrize[index]
-//     //checkcondition
-//     if(winner.condition=="LOW"&&winner.status!=false&&!winnerArray.includes(winner)){
-//         winner.number=winner.number-1
-//         return winner
-//     }
-//     return pickWinner1()
-// }
-
-
-// function pickWinner2(){
-//     const index:number=Math.floor(Math.random()*(66-0)+0)
-//     const winner:Participant=participants[index]
-//     if(winner.condition=="MID"&&winner.status!=false){
-//         winner.number=winner.number-1
-//         return winner
-//     }
-//     return pickWinner2()
-// }
-
-// function pickWinner3(){
-//     const index:number=Math.floor(Math.random()*(66-0)+0)
-//     const winner:Participant=participants[index]
-//     if(winner.condition=="HIGH"&&winner.status!=false){
-//         winner.number=winner.number-1
-//         return winner
-//     }
-//     return pickWinner3()
-// }
-
 function pickWinner(condition:string){
     const index:number=Math.floor(Math.random()*(67-0)+0)
     const winner:Participant=participants[index]

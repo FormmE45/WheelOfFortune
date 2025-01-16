@@ -1,14 +1,6 @@
 import { participants } from "./InitializeData.js";
 import { participantsForSpecialCase } from "./InitializeData.js";
 import { winnerArray } from "./reserve1.js";
-let participantArrayPerPrize = [];
-function initParticipantPool(maxIndexOfParticipant) {
-    participantArrayPerPrize = participants.slice(0, maxIndexOfParticipant);
-    console.log(participantArrayPerPrize.length);
-    participantArrayPerPrize.forEach(participant => {
-        console.log(participant.id);
-    });
-}
 function pickWinner(condition) {
     const index = Math.floor(Math.random() * (67 - 0) + 0);
     const winner = participants[index];
