@@ -4,16 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Slot Machine Picker</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/index.css">
 </head>
-<body>
-  <div id="slotMachine">
-    <div id="participants"></div>
-  </div>
-  <button id="startButton">Start</button>
-  <button id="stopButton" disabled>Stop</button>
+<body >
+    <video autoplay muted loop id="myVideo">
+      <source src="../images/video/YEP.pptx.mp4" type="video/mp4">
+    </video>
 
-  <script src="../js/main.js">
-  </script>
+    <div class="btnStart">
+      <button class="start ">Bắt Đầu</button>
+    </div>
+    <script>
+      const btnStart=document.querySelector(".start").addEventListener("click",()=>{
+        console.log("Start pressed")
+        window.location.assign("reserve.html")
+      })
+    </script>
 </body>
 </html>

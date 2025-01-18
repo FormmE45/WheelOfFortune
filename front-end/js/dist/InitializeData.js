@@ -78,4 +78,12 @@ export const prize2 = new Prize('2', "Giải 2", 'active', false, 5);
 export const prize1 = new Prize('1', "Giải 1", 'active', false, 2);
 export const prizeDB = new Prize('ĐB', "Giải Đặc Biệt", 'active', false, 1);
 participants.push(participant1, participant2, participant3, participant4, participant5, participant6, participant7, participant8, participant9, participant10, participant11, participant12, participant13, participant14, participant15, participant16, participant17, participant18, participant19, participant20, participant21, participant22, participant23, participant24, participant25, participant26, participant27, participant28, participant29, participant30, participant31, participant32, participant33, participant34, participant35, participant36, participant37, participant38, participant39, participant40, participant41, participant42, participant43, participant44, participant45, participant46, participant47, participant48, participant49, participant50, participant51, participant52, participant53, participant54, participant55, participant56, participant57, participant58, participant59, participant60, participant61, participant62, participant63, participant64, participant65, participant66, participant67);
+export function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const randomIndex = Math.floor(Math.random() * (i + 1));
+        [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+    }
+    return array;
+}
+shuffleArray(participants);
 prizes.push(prizeKK, prize4, prize3, prize2, prize1, prizeDB);

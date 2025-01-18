@@ -1,9 +1,11 @@
-import { prizes, prizeButtons, participants, prizeKK, prize1, prize2, prize3, prize4, prizeDB, participantsForSpecialCase } from "./InitializeData.js";
+import { prizes, prizeButtons, participants, prizeKK, prize1, prize2, prize3, prize4, prizeDB } from "./InitializeData.js";
 import { totalPickWinner } from "./PickWinnerService.js";
 import { initParticipantOnArrayInput } from "./InitToFE.js";
+import { participantChosen, randomPick } from "./RollingAnimation.js";
 export let winnerArray = [];
-let current_prize;
+let current_prize = "KK";
 let buttonPrizes = document.querySelector("#buttonPrizes");
+export let stop = false;
 const startButton = document.querySelector("#start");
 const stopButton = document.querySelector("#stop");
 prizes.forEach((prize) => {
@@ -30,11 +32,9 @@ export let winnerPerCycle = [];
 let count = 3;
 if (startButton && stopButton) {
     startButton.addEventListener("click", () => {
-        console.log(current_prize);
         switch (current_prize) {
             case "KK": {
                 winnerPerCycle = [];
-                console.log(winnerPerCycle);
                 if (count == 1) {
                     totalPickWinner(0, 6, 0, 0, 5);
                 }
@@ -47,12 +47,12 @@ if (startButton && stopButton) {
                 else {
                     return;
                 }
-                initParticipantOnArrayInput(participants);
+                stop = false;
+                randomPick(10);
                 break;
             }
             case "4": {
                 winnerPerCycle = [];
-                console.log(participants);
                 if (count == 1) {
                     totalPickWinner(0, 3, 2, 0, 5);
                 }
@@ -65,8 +65,8 @@ if (startButton && stopButton) {
                 else {
                     return;
                 }
-                initParticipantOnArrayInput(participants);
-                console.log(count);
+                stop = false;
+                randomPick(10);
                 break;
             }
             case "3": {
@@ -75,8 +75,9 @@ if (startButton && stopButton) {
                     return;
                 }
                 totalPickWinner(0, 0, 1, 2, 7);
+                stop = false;
+                randomPick(10);
                 prize3.done = true;
-                initParticipantOnArrayInput(participants);
                 break;
             }
             case "2": {
@@ -86,7 +87,8 @@ if (startButton && stopButton) {
                 }
                 totalPickWinner(0, 0, 0, 0, 5);
                 prize2.done = true;
-                initParticipantOnArrayInput(participants);
+                stop = false;
+                randomPick(5);
                 break;
             }
             case "1": {
@@ -96,7 +98,8 @@ if (startButton && stopButton) {
                 }
                 totalPickWinner(0, 0, 0, 0, 2);
                 prize1.done = true;
-                initParticipantOnArrayInput(participants);
+                stop = false;
+                randomPick(2);
                 break;
             }
             case "ĐB": {
@@ -106,7 +109,8 @@ if (startButton && stopButton) {
                 }
                 totalPickWinner(0, 0, 0, 0, 1);
                 prizeDB.done = true;
-                initParticipantOnArrayInput(participantsForSpecialCase);
+                stop = false;
+                randomPick(1);
                 break;
             }
         }
@@ -135,32 +139,68 @@ function initModalWinner() {
 }
 if (startButton && stopButton) {
     stopButton.addEventListener("click", () => {
+        stop = true;
         switch (current_prize) {
             case "KK": {
-                initModalWinner();
+                setTimeout(() => {
+                    winnerArray.forEach((winner) => {
+                        if (winner.div)
+                            participantChosen(winner.div);
+                    });
+                }, 100);
                 if (count == 0) {
                     checkWinnerArrayAndDisableButton(prizeKK);
+                    winnerArray = [];
+                    count = 3;
+                    current_prize = "4";
                 }
                 break;
             }
             case "4": {
+                winnerArray.forEach((winner) => {
+                    if (winner.div)
+                        participantChosen(winner.div);
+                });
+                console.log(count);
                 if (count == 0) {
                     checkWinnerArrayAndDisableButton(prize4);
+                    winnerArray = [];
+                    current_prize = "3";
                 }
                 break;
             }
             case "3": {
+                initParticipantOnArrayInput(participants);
+                winnerArray.forEach((winner) => {
+                    if (winner.div)
+                        participantChosen(winner.div);
+                });
                 checkWinnerArray(prize3);
+                winnerArray = [];
+                current_prize = "2";
                 prize3.disableButton();
                 break;
             }
             case "2": {
+                initParticipantOnArrayInput(participants);
+                winnerArray.forEach((winner) => {
+                    if (winner.div)
+                        participantChosen(winner.div);
+                });
                 checkWinnerArray(prize2);
                 prize2.disableButton();
+                current_prize = "1";
+                winnerArray = [];
                 break;
             }
             case "1": {
+                initParticipantOnArrayInput(participants);
+                winnerArray.forEach((winner) => {
+                    if (winner.div)
+                        participantChosen(winner.div);
+                });
                 checkWinnerArray(prize1);
+                winnerArray = [];
                 prize1.disableButton();
                 break;
             }
@@ -174,3 +214,11 @@ if (startButton && stopButton) {
         stopButton.disabled = true;
     });
 }
+const btnResult = document.querySelector("#result");
+const btnReset = document.querySelector("#reset");
+btnReset === null || btnReset === void 0 ? void 0 : btnReset.addEventListener("click", () => {
+    initParticipantOnArrayInput(participants);
+});
+btnResult === null || btnResult === void 0 ? void 0 : btnResult.addEventListener("click", () => {
+    initModalWinner();
+});

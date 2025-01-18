@@ -5,7 +5,7 @@ export class Participant{
     seniority:number
     condition:string
     status:boolean
-
+    div?:HTMLDivElement
     constructor(id:number,name:string,number:number,seniority:number,condition:string,status:boolean){
         this.id=id
         this.name=name;

@@ -13,8 +13,18 @@
   height: 100%;
   width: 100%;
   text-align: center;
-  /* font-size: 4rem !important;
-  font-weight: bold !important; */
+  /* font-size: 4rem !important; */
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+  background-color: #89251B !important;
+  color: #FA8D40 !important;
+  border-color: black !important;
+  transition: background-color 0.2s ease, color 0.2s ease !important;  
+}
+
+.buttonPrize:hover{
+  background-color: #FA8D40 !important;
+  color: #89251B !important;
 }
 .button-container{
   height: 10vh;
@@ -23,20 +33,69 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
+
+.modal-header{
+  color:#89251B;
+  
+  background-color: #FA8D40 !important;
+}
+
+.modalBg{
+  background-image: url(https://i.pinimg.com/736x/30/d3/13/30d313252b072a50e1a26a31652ff979.jpg);
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.modal-footer{
+  background-color: #FA8D40 !important;
+}
+
 
 .btnStartStop{
   height: 8vh;
   margin: 2vw;
   width: 10vw;
-  /* font-size: 4rem !important;
-  font-weight: bold !important;*/
+  font-weight: bold !important;
+  border:none !important;
+  border-radius: 50% !important;
+  font-size: 1.5rem !important;
+  background-color: #FEEEDF !important;
+  color: #89251B !important;
+  transition: background-color 0.4s ease,color 0.3s ease !important;
 }
 
+.btnShowResult{
+  height: 8vh;
+  margin: 2vw;
+  width: 10vw;
+  font-weight: bold !important;
+  border:none !important;
+  border-radius: 50% !important;
+  font-size: 1.5rem !important;
+  background-color: #FEEEDF !important;
+  color: #89251B !important;
+  transition: background-color 0.4s ease,color 0.3s ease !important;
+}
+.btnShowResult:hover{
+  background-color: #89251B !important;
+  color: #FEEEDF !important;
+}
+
+.btnStartStop:hover{
+  background-color: #89251B !important;
+  color: #FEEEDF !important;
+}
+
+
 body{
+  font-family: 'Roboto Mono', monospace !important;
   position: relative;
-  height: 100%;
-  background-image: url(https://i.pinimg.com/236x/6d/69/2f/6d692f373f40e5d7b75b107faa6972e5.jpg);
+  height: 200%;
+  background-image:url(../images/background/Красный\ китайский\ узор\,\ восточный\ фон_\ Вектор\ _\ Премиум\ векторы.jpg);
+ 
 }
 
 @keyframes scrolling {
@@ -53,26 +112,53 @@ body{
   justify-content: center;
 }
 .participantDiv{
+  border-radius: 15%;
+  display: flex;
   margin: 0.2%;
+  max-width: 300px;
   /* display: flex;
   align-items: center;
   justify-content: center; */
+  flex-direction: column;
+  justify-content: space-around;
   text-align: center;
   width: 7vw;
   height: 9vh;
-  font-weight: bold;
-  font-size: 100%;
+  font-weight: bolder;
+  transition: background-color 0.07s ease,color 0.07s ease;
+}
+
+.participantDiv p{
+  text-wrap: pretty;
+  margin: 0;
+  font-size: 69%;
 }
 
 .participantActive{
-  background-color: aqua;
-  color: red;
+  background-color: #FEEEDF;
+  color: #DC392F
 }
 .participantInactive{
   background-color: gray;
   color: black;
 }
 
-.modalPrize{
-  height: 100vh;
+.participantChosen{
+  background-color: #89251B !important;
+  color: #FA8D40 !important;
 }
+
+#winnermodalbody{
+  background-color: #FEEEDF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color:#89251B
+}
+
+.btnStartStop{
+
+}
+

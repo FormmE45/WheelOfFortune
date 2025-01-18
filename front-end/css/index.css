@@ -1,0 +1,37 @@
+body{
+    background-image: url();
+    
+}
+
+video{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
+.btnStart{
+    position: fixed;
+    margin-top: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.start{
+    border: none;
+    background-color: #FEEEDF;
+    color: #89251B;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: bolder;
+    border-radius: 20%;
+    padding: 20px;
+    transition: background-color 0.3s ease,color 0.3s ease;
+    scale: 1.5;
+}
+.start:hover{
+    background-color: #89251B;
+    color:#FEEEDF ;
+}

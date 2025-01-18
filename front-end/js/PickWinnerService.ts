@@ -4,7 +4,7 @@ import { participantsForSpecialCase } from "./InitializeData.js"
 import { winnerArray, winnerPerCycle } from "./reserve1.js"
 
 function pickWinner(condition:string){
-    const index:number=Math.floor(Math.random()*(67-0)+0)
+    const index:number=Math.floor(Math.random()*(participants.length-0)+0)
     const winner:Participant=participants[index]
     if(winner.condition==condition&&winner.number>0&&!winnerArray.includes(winner)){
         winner.number=winner.number-1

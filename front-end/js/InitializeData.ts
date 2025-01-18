@@ -87,7 +87,16 @@ participants.push(participant1,participant2,participant3,participant4,participan
     participant46,participant47,participant48,participant49,participant50,participant51,participant52,participant53,participant54,participant55,participant56,participant57,participant58,
     participant59,participant60,participant61,participant62,participant63,participant64,participant65,participant66,participant67)
 
-
+    export function shuffleArray(array:Object[]) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const randomIndex = Math.floor(Math.random() * (i + 1)); // Random index from 0 to i
+          // Swap elements
+          [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+        }
+        return array;
+      }
+    
+shuffleArray(participants)
 
 prizes.push(prizeKK,prize4,prize3,prize2,prize1,prizeDB)
 
