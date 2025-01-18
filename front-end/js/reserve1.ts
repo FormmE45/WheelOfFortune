@@ -1,7 +1,7 @@
-import { prizes,prizeButtons,participants,prizeKK,prize1,prize2,prize3,prize4,prizeDB, participantsForSpecialCase } from "./InitializeData.js"
+import { prizes,prizeButtons,participants,prizeKK,prize1,prize2,prize3,prize4,prizeDB, participantsForSpecialCase, participantsForSpecialCaseFE, initForDB } from "./InitializeData.js"
 import { Participant } from "./ParticipantClass.js"
 import { Prize } from "./PrizeClass.js"
-import { totalPickWinner } from "./PickWinnerService.js"
+import { pickWinnerforSpecialCase, totalPickWinner } from "./PickWinnerService.js"
 import { initParticipantOnArrayInput } from "./InitToFE.js"
 import { participantChosen, randomPick } from "./RollingAnimation.js"
 export let winnerArray:Participant[]=[]
@@ -22,6 +22,7 @@ prizes.forEach((prize)=>{
     button.setAttribute('data-bs-toggle', 'modal')
     button.setAttribute('data-bs-target', '#prize'+prize.id)
     button.addEventListener("click",()=>{
+        button.classList.add("btnPrizeSelected")
         winnerArray=[]
         console.log(winnerArray)
         count=3
@@ -45,6 +46,7 @@ startButton.addEventListener("click",()=>{
     switch(current_prize){
         case "KK" : {
             winnerPerCycle=[]
+            initParticipantOnArrayInput(participants)
             //Change number of winner
             if(count==1){
             totalPickWinner(0,6,0,0,5)
@@ -114,11 +116,13 @@ startButton.addEventListener("click",()=>{
             break
         }
         case "ĐB" : {
+            initForDB()
+            initParticipantOnArrayInput(participantsForSpecialCaseFE)
             winnerPerCycle=[]
             if(prizeDB.done){
                 return
             }
-            totalPickWinner(0,0,0,0,1)
+            pickWinnerforSpecialCase()
             prizeDB.done=true
             stop=false
             randomPick(1)
@@ -128,7 +132,6 @@ startButton.addEventListener("click",()=>{
     startButton.disabled=true
     stopButton.disabled=false
 })
-
 
 
 }
@@ -163,12 +166,11 @@ stopButton.addEventListener("click",()=>{
     switch(current_prize){
         case "KK":{
             setTimeout(()=>{
-                winnerArray.forEach((winner)=>{
+                winnerPerCycle.forEach((winner)=>{
                     if(winner.div)
                     participantChosen(winner.div)
                 })
-            },100)
-            
+            },250)
             // initModalWinner()
             if(count==0){
                 checkWinnerArrayAndDisableButton(prizeKK)
@@ -179,10 +181,13 @@ stopButton.addEventListener("click",()=>{
             break
         }
         case "4":{
-            winnerArray.forEach((winner)=>{
-                if(winner.div)
-                participantChosen(winner.div)
-            })
+            setTimeout(()=>{
+                winnerPerCycle.forEach((winner)=>{
+                    if(winner.div)
+                    participantChosen(winner.div)
+                })
+            },250)
+           
             // initModalWinner()
             console.log(count)
             if(count==0){
@@ -193,12 +198,12 @@ stopButton.addEventListener("click",()=>{
             break
         }
         case "3":{
-            //Init again and mark the winner
-                initParticipantOnArrayInput(participants)
-                winnerArray.forEach((winner)=>{
+            setTimeout(()=>{
+                winnerPerCycle.forEach((winner)=>{
                     if(winner.div)
                     participantChosen(winner.div)
                 })
+            },250)
                 checkWinnerArray(prize3)
                 winnerArray=[]
                 current_prize="2"
@@ -206,12 +211,12 @@ stopButton.addEventListener("click",()=>{
             break
         }
         case "2":{
-            //Init again and mark the winner
-            initParticipantOnArrayInput(participants)
-            winnerArray.forEach((winner)=>{
-                if(winner.div)
-                participantChosen(winner.div)
-            })
+            setTimeout(()=>{
+                winnerPerCycle.forEach((winner)=>{
+                    if(winner.div)
+                    participantChosen(winner.div)
+                })
+            },250)
             checkWinnerArray(prize2)
                 prize2.disableButton()
             current_prize="1"
@@ -219,18 +224,28 @@ stopButton.addEventListener("click",()=>{
             break
         }
         case "1":{
-            //Init again and mark the winner
-            initParticipantOnArrayInput(participants)
-            winnerArray.forEach((winner)=>{
-                if(winner.div)
-                participantChosen(winner.div)
-            })
+            setTimeout(()=>{
+                winnerPerCycle.forEach((winner)=>{
+                    if(winner.div)
+                    participantChosen(winner.div)
+                })
+            },250)
             checkWinnerArray(prize1)
+            prize1.disableButton()
             winnerArray=[]
-                prize1.disableButton()
             break
         }
         case "ĐB":{
+            console.log(winnerPerCycle)
+            setTimeout(()=>{
+                console.log(winnerPerCycle)
+                winnerPerCycle.forEach((winner)=>{
+                    if(winner.div){
+                    console.log(winner.div)
+                    participantChosen(winner.div)
+                    }
+                })
+            },250)
             checkWinnerArray(prizeDB)
                 prizeDB.disableButton()
             break
@@ -243,7 +258,12 @@ stopButton.addEventListener("click",()=>{
 const btnResult=document.querySelector("#result")
 const btnReset=document.querySelector("#reset")
 btnReset?.addEventListener("click",()=>{
+    if(current_prize=="ĐB"){
+        initForDB()
+        initParticipantOnArrayInput(participantsForSpecialCaseFE)
+    }else{
     initParticipantOnArrayInput(participants)
+    }
 })
 
 btnResult?.addEventListener("click",()=>{

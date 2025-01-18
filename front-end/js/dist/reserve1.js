@@ -1,5 +1,5 @@
-import { prizes, prizeButtons, participants, prizeKK, prize1, prize2, prize3, prize4, prizeDB } from "./InitializeData.js";
-import { totalPickWinner } from "./PickWinnerService.js";
+import { prizes, prizeButtons, participants, prizeKK, prize1, prize2, prize3, prize4, prizeDB, participantsForSpecialCaseFE, initForDB } from "./InitializeData.js";
+import { pickWinnerforSpecialCase, totalPickWinner } from "./PickWinnerService.js";
 import { initParticipantOnArrayInput } from "./InitToFE.js";
 import { participantChosen, randomPick } from "./RollingAnimation.js";
 export let winnerArray = [];
@@ -16,6 +16,7 @@ prizes.forEach((prize) => {
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#prize' + prize.id);
     button.addEventListener("click", () => {
+        button.classList.add("btnPrizeSelected");
         winnerArray = [];
         console.log(winnerArray);
         count = 3;
@@ -35,6 +36,7 @@ if (startButton && stopButton) {
         switch (current_prize) {
             case "KK": {
                 winnerPerCycle = [];
+                initParticipantOnArrayInput(participants);
                 if (count == 1) {
                     totalPickWinner(0, 6, 0, 0, 5);
                 }
@@ -103,11 +105,13 @@ if (startButton && stopButton) {
                 break;
             }
             case "ĐB": {
+                initForDB();
+                initParticipantOnArrayInput(participantsForSpecialCaseFE);
                 winnerPerCycle = [];
                 if (prizeDB.done) {
                     return;
                 }
-                totalPickWinner(0, 0, 0, 0, 1);
+                pickWinnerforSpecialCase();
                 prizeDB.done = true;
                 stop = false;
                 randomPick(1);
@@ -143,11 +147,11 @@ if (startButton && stopButton) {
         switch (current_prize) {
             case "KK": {
                 setTimeout(() => {
-                    winnerArray.forEach((winner) => {
+                    winnerPerCycle.forEach((winner) => {
                         if (winner.div)
                             participantChosen(winner.div);
                     });
-                }, 100);
+                }, 250);
                 if (count == 0) {
                     checkWinnerArrayAndDisableButton(prizeKK);
                     winnerArray = [];
@@ -157,10 +161,12 @@ if (startButton && stopButton) {
                 break;
             }
             case "4": {
-                winnerArray.forEach((winner) => {
-                    if (winner.div)
-                        participantChosen(winner.div);
-                });
+                setTimeout(() => {
+                    winnerPerCycle.forEach((winner) => {
+                        if (winner.div)
+                            participantChosen(winner.div);
+                    });
+                }, 250);
                 console.log(count);
                 if (count == 0) {
                     checkWinnerArrayAndDisableButton(prize4);
@@ -170,11 +176,12 @@ if (startButton && stopButton) {
                 break;
             }
             case "3": {
-                initParticipantOnArrayInput(participants);
-                winnerArray.forEach((winner) => {
-                    if (winner.div)
-                        participantChosen(winner.div);
-                });
+                setTimeout(() => {
+                    winnerPerCycle.forEach((winner) => {
+                        if (winner.div)
+                            participantChosen(winner.div);
+                    });
+                }, 250);
                 checkWinnerArray(prize3);
                 winnerArray = [];
                 current_prize = "2";
@@ -182,11 +189,12 @@ if (startButton && stopButton) {
                 break;
             }
             case "2": {
-                initParticipantOnArrayInput(participants);
-                winnerArray.forEach((winner) => {
-                    if (winner.div)
-                        participantChosen(winner.div);
-                });
+                setTimeout(() => {
+                    winnerPerCycle.forEach((winner) => {
+                        if (winner.div)
+                            participantChosen(winner.div);
+                    });
+                }, 250);
                 checkWinnerArray(prize2);
                 prize2.disableButton();
                 current_prize = "1";
@@ -194,17 +202,28 @@ if (startButton && stopButton) {
                 break;
             }
             case "1": {
-                initParticipantOnArrayInput(participants);
-                winnerArray.forEach((winner) => {
-                    if (winner.div)
-                        participantChosen(winner.div);
-                });
+                setTimeout(() => {
+                    winnerPerCycle.forEach((winner) => {
+                        if (winner.div)
+                            participantChosen(winner.div);
+                    });
+                }, 250);
                 checkWinnerArray(prize1);
-                winnerArray = [];
                 prize1.disableButton();
+                winnerArray = [];
                 break;
             }
             case "ĐB": {
+                console.log(winnerPerCycle);
+                setTimeout(() => {
+                    console.log(winnerPerCycle);
+                    winnerPerCycle.forEach((winner) => {
+                        if (winner.div) {
+                            console.log(winner.div);
+                            participantChosen(winner.div);
+                        }
+                    });
+                }, 250);
                 checkWinnerArray(prizeDB);
                 prizeDB.disableButton();
                 break;
@@ -217,7 +236,13 @@ if (startButton && stopButton) {
 const btnResult = document.querySelector("#result");
 const btnReset = document.querySelector("#reset");
 btnReset === null || btnReset === void 0 ? void 0 : btnReset.addEventListener("click", () => {
-    initParticipantOnArrayInput(participants);
+    if (current_prize == "ĐB") {
+        initForDB();
+        initParticipantOnArrayInput(participantsForSpecialCaseFE);
+    }
+    else {
+        initParticipantOnArrayInput(participants);
+    }
 });
 btnResult === null || btnResult === void 0 ? void 0 : btnResult.addEventListener("click", () => {
     initModalWinner();

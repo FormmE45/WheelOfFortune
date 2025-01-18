@@ -12,10 +12,11 @@ export function initParticipantFE(participant) {
     participantDiv.className = "participantDiv col-1 fw-bold";
     participantDiv.id = participant.name + participant.id;
     if (participant.number == 0) {
-        participantDiv.className = participantDiv.className + " " + "participantInactive";
+        participantDiv.classList.add("participantInactive");
     }
     else {
-        participantDiv.className = participantDiv.className + " " + "participantActive";
+        participantDiv.classList.remove("participantInactive");
+        participantDiv.classList.add("participantActive");
         participantElementArray.push(participantDiv);
         participant.div = participantDiv;
     }
@@ -24,6 +25,7 @@ export function initParticipantFE(participant) {
 export function initParticipantOnArrayInput(participantsInput) {
     participantElementArray = [];
     if (participantContainer) {
+        console.log("Clear inner html");
         participantContainer.innerHTML = "";
     }
     participantsInput.forEach((participant) => {
